@@ -238,6 +238,7 @@ module RailsERD
 
       each_relationship do |relationship|
         from, to = relationship.source, relationship.destination
+        next if from.nil? || to.nil?
         unless draw_edge from.name, to.name, relationship_options(relationship)
           from.children.each do |child|
             draw_edge child.name, to.name, relationship_options(relationship)

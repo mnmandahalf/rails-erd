@@ -104,6 +104,7 @@ module RailsERD
     def relationships_mapping
       @relationships_mapping ||= {}.tap do |mapping|
         relationships.each do |relationship|
+          next if relationship.source.nil? || relationship.destination.nil?
           (mapping[relationship.source.name] ||= []) << relationship
           (mapping[relationship.destination.name] ||= []) << relationship
         end
